@@ -7,41 +7,42 @@ def insertionSort(arr):
             arr[i + 1] = arr[i]
             arr[i] = tmp
             i -= 1
+            print(i)
     return arr
 
 
 print(insertionSort([1, 4, 5, 6, 2, 3, 8]))
-print(insertionSort([10, 9, 8, 7, 6, 5, 4, 3, 2, 1]))
-print(insertionSort([]))
-print(
-    insertionSort(
-        [
-            "z",
-            "y",
-            "x",
-            "w",
-            "v",
-            "u",
-            "t",
-            "s",
-            "r",
-            "q",
-            "p",
-            "o",
-            "n",
-            "m",
-            "l",
-            "k",
-            "j",
-            "i",
-            "h",
-            "g",
-            "f",
-            "e",
-            "d",
-            "c",
-            "b",
-            "a",
-        ]
-    )
-)
+# print(insertionSort([10, 9, 8, 7, 6, 5, 4, 3, 2, 1]))
+# print(insertionSort([]))
+# print(
+#     insertionSort(
+#         [
+#             "z",
+#             "y",
+#             "x",
+#             "w",
+#             "v",
+#             "u",
+#             "t",
+#             "s",
+#             "r",
+#             "q",
+#             "p",
+#             "o",
+#             "n",
+#             "m",
+#             "l",
+#             "k",
+#             "j",
+#             "i",
+#             "h",
+#             "g",
+#             "f",
+#             "e",
+#             "d",
+#             "c",
+#             "b",
+#             "a",
+#         ]
+#     )
+# )
