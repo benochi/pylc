@@ -1,6 +1,9 @@
 # break down to single element array copies, compare to arrays and insert in order.
 # recursion - 2 branches
 # is mergesort stable? We can make it stable.
+
+def merge():
+    
 def mergeSort(arr, s, e):
     # starting index and ending index
     if e - s + 1 <= 1:
