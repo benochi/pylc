@@ -7,7 +7,6 @@ class Solution:
         if not nums:
             return []
 
-        output = []
         counts = [0] * (max(nums) + 1)
 
         for i in range(len(nums)):
