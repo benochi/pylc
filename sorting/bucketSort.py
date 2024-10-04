@@ -21,3 +21,23 @@
 # Note:
 # - Bucket Sort is efficient when data is uniformly distributed over a known range.
 # - It has an average time complexity of O(n + k), where n is the number of elements, and k is the number of buckets.
+
+# Rarely used, it can only handle guaranteed values within a finite range, ie: values of 0-2
+
+
+def bucketSort(arr):
+    output = []
+    counts = [0] * (max(arr) + 1)
+
+    for i in range(len(arr)):
+        counts[arr[i]] += 1
+
+    for i in range(len(counts)):
+        while counts[i] > 0:
+            output.append(i)
+            counts[i] -= 1
+
+    return output
+
+
+print(bucketSort([1, 0, 0, 1, 1, 2, 2, 3, 3, 2, 1, 3, 2, 1, 1, 0]))
