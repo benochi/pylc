@@ -1,8 +1,7 @@
 # grab pivot value -> random value usually rightmost
 # pivot = arr[-1]
 # compare every other value to pivot and filter left or right based on comparison <= goes left, > goes right
-
-
+# PsuedoCode:  base case, pivot, left right, recursion(left) + pivot + recursion(right)
 def quickSort(arr):
     if len(arr) <= 1:
         return arr
