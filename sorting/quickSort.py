@@ -19,31 +19,32 @@ def quickSort(arr):
 
 
 # Optimized solution with two pointers.
-def quickSort(arr, low, high):
-    if low < high:
-        # Get the index where the pivot is placed after sorting
-        pivotIndex = sortAroundPivot(arr, low, high)
-        # Recursively apply quicksort to the left and right partitions
-        quickSort(arr, low, pivotIndex - 1)
-        quickSort(arr, pivotIndex + 1, high)
+def quickSort(arr: list[int], s: int, e: int) -> list[int]:
+    if e - s + 1 <= 1:
+        return arr
 
+    pivot = arr[e]
+    left = s  # pointer for left side
 
-def sortAroundPivot(arr, low, high):
-    pivot = arr[high]  # Choosing the last element as the pivot
-    smallerElementIndex = low - 1  # Keeps track of the "less than pivot" section
+    # Partition: elements smaller than pivot on left side
+    for i in range(s, e):
+        if arr[i] < pivot:
+            tmp = arr[left]
+            arr[left] = arr[i]
+            arr[i] = tmp
+            left += 1
 
-    for currentIndex in range(low, high):
-        if arr[currentIndex] <= pivot:
-            smallerElementIndex += 1
-            # Swap the current element with the element at smallerElementIndex
-            arr[smallerElementIndex], arr[currentIndex] = (
-                arr[currentIndex],
-                arr[smallerElementIndex],
-            )
+    # Move pivot in-between left & right sides
+    arr[e] = arr[left]
+    arr[left] = pivot
 
-    # Move the pivot element to its correct position
-    arr[smallerElementIndex + 1], arr[high] = arr[high], arr[smallerElementIndex + 1]
-    return smallerElementIndex + 1
+    # Quick sort left side
+    quickSort(arr, s, left - 1)
+
+    # Quick sort right side
+    quickSort(arr, left + 1, e)
+
+    return arr
 
 
 # Test the function
