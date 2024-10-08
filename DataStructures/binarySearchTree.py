@@ -21,18 +21,48 @@ class BinarySearchTree:
         else:
             self.insertRecursive(self.root, val)
 
-    def insertRecursive(self, node, val):
-        if val < node.val:
-            if not node.left:
-                node.left = TreeNode(val)
-            else:
-                self.insertRecursive(node.left, val)
-        elif val > node.val:
-            if not node.right:
-                node.right = TreeNode(val)
-            else:
-                self.insertRecursive(node.right, val)
+    def insertRecursive(self, root, val):
+        if not root:
+            return TreeNode(val)
+
+        if val > root.val:
+            root.right = self.insertRecursive(root.right, val)
+        elif val < root.val:
+            root.left = self.insertRecursive(root.left, val)
+        return root
         # don't do anything for matching values to prevent duplicates.
+
+    # can search for val or node
+    def minValueNode(self, root):
+        curr = root
+        while curr and curr.left:
+            curr = curr.left
+        return curr
+
+    def maxValueNode(self, root):
+        curr = root
+        while curr and curr.right:
+            curr = curr.right
+        return curr
+
+    def remove(self, root, target):
+        if not root:
+            return None
+
+        if target > root.val:
+            root.right = self.remove(root.right, target)
+        elif target < root.val:
+            root.left = self.remove(root.left, target)
+        else:
+            if not root.left:
+                return root.right
+            elif not root.right:
+                return root.left
+            else:
+                minNode = self.minValueNode(root.right)
+                root.val = minNode.val
+                root.right = self.remove(root.right, minNode.val)
+        return root
 
     def search(self, root, target):
         if not root:
