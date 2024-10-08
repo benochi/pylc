@@ -1,9 +1,9 @@
 class Solution(object):
     def guessNumber(self, n):
-        """
-        :type n: int
-        :rtype: int
-        """
+        # """
+        # :type n: int
+        # :rtype: int
+        # """
         l = 1
         r = n
         while l <= r:
