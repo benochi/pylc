@@ -1,5 +1,7 @@
 # recursive
 # brute force - go through all possibilities
+# can be used on more than binary trees.
+# O(n)
 def canReachLeaf(root):
     if not root or root.val == 0:
         return False
@@ -13,7 +15,7 @@ def canReachLeaf(root):
     return False
 
 
-# return path without 0 as leaf:
+# return path without 0 as leaf if only one path exists:
 def leafPath(root, path):
     if not root or root.val == 0:
         return False
