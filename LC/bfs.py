@@ -1,5 +1,7 @@
 from collections import deque
 
+# O(n)
+
 
 def bfs(root):
     queue = deque()
