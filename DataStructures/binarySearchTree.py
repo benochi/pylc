@@ -5,6 +5,9 @@
 # can be the underlying structure behind sets and maps.
 # but can be implemented in other ways
 
+# treemap - from sortedcontainers import SortedDict
+# treemap = SortedDict({'c':3, 'a': 1})
+
 
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
