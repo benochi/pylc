@@ -2,6 +2,8 @@
 # all left values must be less than root node all right must be higher
 # generally should never contain duplicate values.
 # bsts are recursive.
+# can be the underlying structure behind sets and maps.
+# but can be implemented in other ways
 
 
 class TreeNode:
