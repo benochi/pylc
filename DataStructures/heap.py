@@ -31,6 +31,7 @@ class Heap:
 
     def pop(self):
         # always pop root, move last node to root then filter down.
+        # O(logN)
         if len(self.heap) == 1:
             return None
         if len(self.heap) == 2:
@@ -39,7 +40,7 @@ class Heap:
         res = self.heap[1]
         self.heap[1] = self.heap.pop()
         i = 1
-        while 2 * i < len(self.heap):
+        while 2 * i < len(self.heap):  # 931 905 7931
             if (
                 2 * i + 1 < len(self.heap)
                 and self.heap[2 * i + 1] < self.heap[2 * i]
