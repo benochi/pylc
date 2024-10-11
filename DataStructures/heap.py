@@ -40,7 +40,7 @@ class Heap:
         res = self.heap[1]
         self.heap[1] = self.heap.pop()
         i = 1
-        while 2 * i < len(self.heap):  # 931 905 7931
+        while 2 * i < len(self.heap):
             if (
                 2 * i + 1 < len(self.heap)
                 and self.heap[2 * i + 1] < self.heap[2 * i]
