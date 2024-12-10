@@ -11,12 +11,11 @@ class Solution:
         # 2. Loop through each element and XOR it with the variable.
         # 3. The result after processing all elements is the unique number.
         pass
-        
+      
         result = 0
         for num in nums:
-            result ^= num
+            result ^= num 
         return result
-
 # Example 1:
 # nums = [2, 2, 1]
 # Expected output: 1
