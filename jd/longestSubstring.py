@@ -15,7 +15,7 @@ The length of s will be between 0 and 10,000.
 The string s consists of English letters, digits, symbols, and spaces."""
 
 
-def longestSubstring(s):
+def longestSubstring(s): 
     if len(s) == 0:
         return 0
 
