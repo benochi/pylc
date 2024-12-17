@@ -1,5 +1,5 @@
 class Solution:
-    def letterCombinations(self, digits: str) -> List[str]:
+    def letterCombinations(self, digits):
         if len(digits) < 1:
             return []
 
