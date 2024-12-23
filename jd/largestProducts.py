@@ -45,9 +45,10 @@ def largestProducts(nums1, nums2, k):
             product = n * x 
             heapq.heappush(maxHeap, (-product, [n,x]))
 
-    while maxHeap and len(res) < k:
+    while k > 0 and maxHeap:
         product, values = heapq.heappop(maxHeap)
         res.append(values)
+        k -= 1
 
     return res
 print(largestProducts(nums1 = [1, 7, 11], nums2 = [2, 4, 6], k = 2))
