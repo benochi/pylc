@@ -32,12 +32,13 @@ def beautifulNum(n):
   factors = [3, 7, 11]
     
   for _ in range(n):
-      beautiful = heapq.heappop(heap)
-      for factor in factors:
-          new_num = beautiful * factor
-          if new_num not in seen:
-              seen.add(new_num)
-              heapq.heappush(heap, new_num)
+    print(heap)
+    beautiful = heapq.heappop(heap)
+    for factor in factors:
+        new_num = beautiful * factor
+        if new_num not in seen:
+          seen.add(new_num)
+          heapq.heappush(heap, new_num)
     
   return beautiful
 
