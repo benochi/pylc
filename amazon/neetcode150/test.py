@@ -28,7 +28,10 @@ def wacky(str):
   minWindow = ""
 
   for r, c in enumerate(str):
-        distinct[c] = distinct.get(c, 0) + 1
+        if c in distinct:
+            distinct[c] += 1
+        else:
+            distinct[c] = 1
 
         while len(distinct) == len(count):
             if r - l + 1 < smallestWindow:
