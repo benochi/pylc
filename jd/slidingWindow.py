@@ -1,3 +1,5 @@
+from collections import Counter
+
 def wacky(str):
   count = Counter(str)
   distinct = {}
