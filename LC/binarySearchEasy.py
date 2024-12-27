@@ -8,6 +8,6 @@ class Solution:
                 return mid
             if nums[mid] < target:
                 l = mid + 1
-            elif nums[mid] > target:
+            else:
                 r = mid - 1
         return -1
