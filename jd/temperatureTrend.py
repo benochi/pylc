@@ -84,3 +84,8 @@ print(Temp(temps = [73, 71, 70, 74, 75, 72, 76])) #[1, 1, 1, 4, 5, 1, 7]
 print(Temp(temps = [50, 60, 55, 65, 70, 60])) # [1, 2, 1, 4, 5, 1]
 print(Temp(temps = [73, 70, 72, 74, 75, 7, 8, 19, 73, 74, 80])) #[1, 1, 2, 4, 5, 1, 2, 3, 4, 5, 11]
 print(Temp(temps = [73, 73, 73])) #1,2,3
+
+print(temperatureTrendSpan(temps = [73, 71, 70, 74, 75, 72, 76])) #[1, 1, 1, 4, 5, 1, 7]
+print(temperatureTrendSpan(temps = [50, 60, 55, 65, 70, 60])) # [1, 2, 1, 4, 5, 1]
+print(temperatureTrendSpan(temps = [73, 70, 72, 74, 75, 7, 8, 19, 73, 74, 80])) #[1, 1, 2, 4, 5, 1, 2, 3, 4, 5, 11]
+print(temperatureTrendSpan(temps = [73, 73, 73])) #1,2,3
