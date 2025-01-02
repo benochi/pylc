@@ -11,4 +11,6 @@ else:
 
 print("a".isalnum())
 print("2".isalnum())
+print(ord("a"))
+print(ord("b"))
 print("-".isalnum())
