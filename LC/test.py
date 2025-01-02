@@ -7,3 +7,8 @@ if count[4]:
     print(count[4])
 else:
     print(False)
+
+
+print("a".isalnum())
+print("2".isalnum())
+print("-".isalnum())
