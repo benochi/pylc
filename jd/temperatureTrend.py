@@ -51,8 +51,17 @@ def Temp(temps):
     if temps[i] >= highest:
       output[i] = i + 1
       highest = temps[i]
-
+    elif temps[i - 1] and temps[i] > temps[i - 1]:
+      j = i - 1
+      midCount = 1
+      while temps[j] and temps[i] and temps[i] >= temps[j]:
+        midCount += 1
+        j -=1
+      output[i] = midCount
+        
   return output
       
 print(Temp(temps = [73, 71, 70, 74, 75, 72, 76])) #[1, 1, 1, 4, 5, 1, 7]
 print(Temp(temps = [50, 60, 55, 65, 70, 60])) # [1, 2, 1, 4, 5, 1]
+print(Temp(temps = [73, 70, 72, 74, 75, 7, 8, 19, 73, 74, 80])) #[1, 1, 2, 4, 5, 1, 2, 3, 4, 5, 11]
+print(Temp(temps = [73, 73, 73])) #1,2,3
