@@ -60,6 +60,25 @@ def Temp(temps):
       output[i] = midCount
         
   return output
+
+#optimized: 
+def temperatureTrendSpan(temps):
+    n = len(temps)
+    stack = []  
+    spans = [1] * n  
+    
+    for i in range(n):
+        while stack and temps[i] >= temps[stack[-1]]:
+            stack.pop()
+            
+        if stack:
+            spans[i] = i - stack[-1]
+        else:
+            spans[i] = i + 1
+            
+        stack.append(i)
+        
+    return spans
       
 print(Temp(temps = [73, 71, 70, 74, 75, 72, 76])) #[1, 1, 1, 4, 5, 1, 7]
 print(Temp(temps = [50, 60, 55, 65, 70, 60])) # [1, 2, 1, 4, 5, 1]
