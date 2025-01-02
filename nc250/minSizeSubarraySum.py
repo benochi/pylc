@@ -10,6 +10,6 @@ class Solution:
             while currentSum >= target:
                 minLength = min(minLength, r - l + 1)
                 currentSum -= nums[l]
-                left += 1
+                l += 1
         
         return minLength if minLength != float('inf') else 0
