@@ -8,9 +8,14 @@ if count[4]:
 else:
     print(False)
 
+# def customSort(arr):
+#     for i in arr:
+
 
 print("a".isalnum())
 print("2".isalnum())
 print(ord("a"))
 print(ord("b"))
 print("-".isalnum())
+
+print(arr.sort(key=customSort()))
