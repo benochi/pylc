@@ -10,5 +10,4 @@ class Solution:
             res += prefixSums.get(diff, 0)
             prefixSums[currSum] = 1 + prefixSums.get(currSum, 0)
             
-        
         return res
