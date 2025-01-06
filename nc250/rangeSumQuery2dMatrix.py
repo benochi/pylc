@@ -5,10 +5,8 @@ class NumMatrix:
             return
             
         rows, cols = len(matrix), len(matrix[0])
-        # Create prefix sum matrix with extra row/col for easier calculation
         self.prefix = [[0] * (cols + 1) for _ in range(rows + 1)]
-        
-        # Build prefix sum matrix
+
         for i in range(rows):
             for j in range(cols):
                 self.prefix[i + 1][j + 1] = (matrix[i][j] + 
