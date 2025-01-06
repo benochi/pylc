@@ -34,9 +34,6 @@ def kadane(list):
   return maxSum
 
 
-
-  
-
 print(kadane([2, 3, -8, 7, -1, 2, 3])) #11
 print(kadane([-2, -4])) # -2 
 print(kadane([5, 4, 1, 7, 8])) # 25
