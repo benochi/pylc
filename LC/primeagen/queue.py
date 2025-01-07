@@ -25,9 +25,23 @@ class Queue:
     self.length -= 1
     if not self.head:
       self.tail = None
-    return removed
+    return removed.val
   
   def peek(self):
     if not self.head:
       return None
     return self.head.val
+  
+  def getLength(self):
+    return self.length
+  
+q = Queue()
+q.enqueue(1)
+q.enqueue(2)
+q.enqueue(3)
+print(q.peek())        # Output: 1
+print(q.deque())       # Output: 1
+print(q.getLength())   # Output: 2
+print(q.deque())       # Output: 2
+print(q.deque())       # Output: 3
+print(q.getLength()) 
