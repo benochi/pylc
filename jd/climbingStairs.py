@@ -26,15 +26,15 @@
 # 1 ≤ n ≤ 32
 
 def stairs(n):
-
-  one, two = 1, 1# 1, 1+ 1, 2+ 2(3), 3 + 4, 
-  for i in range(2, n +1):
+  one, two = 1, 1
+  for i in range(2, n + 1):
       curr = one + two
       two = one
       one = curr
   
   return one
 
+print(stairs(1))
 print(stairs(2)) # 2
 print(stairs(4)) # 5
 print(stairs(5)) # 8 
