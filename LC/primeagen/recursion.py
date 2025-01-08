@@ -13,7 +13,11 @@ arr=["#####E#",
     "#S#####"]
 directions = [[1,0],[0,1],[0,-1],[-1,0]]
 def pathFind(maze, wall, start, end):
-  return
+  seen = []
+  path = []
+
+  for p in path:
+    s
   
 def walk(maze, wall, curr, end, seen, path):
   if curr.x < 0 or curr.x >= len(maze[0]) or curr.y < 0 or curr.y >= len(maze):
@@ -21,6 +25,7 @@ def walk(maze, wall, curr, end, seen, path):
   if(maze[curr.x][curr.y] == wall):
     return False
   if curr.x == end.x and curr.y == end.y:
+    path.push(end)
     return True
   if seen[curr.x][curr.y]:
     return False
