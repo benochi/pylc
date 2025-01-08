@@ -1,5 +1,5 @@
 
-
+#O(n log n) - O(n^2)  usually faster than merge sort, sometimes can be slower but rare. 
 def quickSort(arr):
   if len(arr) <= 1:
     return arr
