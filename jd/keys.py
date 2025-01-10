@@ -33,6 +33,7 @@
 # 1 <= sum(rooms[i].length) <= 3000
 # 0 <= rooms[i][j] < n
 # All the values of rooms[i] are unique.
+from collections import deque
 
 def keys(rooms):
   if len(rooms) == 0:
@@ -53,5 +54,27 @@ def keys(rooms):
   
   return len(visit) == len(rooms) 
 
-print(keys([[1],[2],[3],[]])) # True
-print(keys([[1,3],[3,0,1],[2],[0]])) # False
+# print(keys([[1],[2],[3],[]])) # True
+# print(keys([[1,3],[3,0,1],[2],[0]])) # False
+
+def keysBFS(rooms):
+  if len(rooms) == 0:
+    return False
+  
+  q = deque()
+  visit = set()
+  q.append(0)
+  visit.add(0)
+
+  while q:
+    room = q.popleft()
+    for key in rooms[room]:
+      if key not in visit:
+        q.append(key)
+        visit.add(key)
+  
+  return len(visit) == len(rooms)
+
+
+print(keysBFS([[1],[2],[3],[]])) # True
+print(keysBFS([[1,3],[3,0,1],[2],[0]])) # False
