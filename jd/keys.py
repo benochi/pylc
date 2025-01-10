@@ -53,7 +53,5 @@ def keys(rooms):
   
   return len(visit) == len(rooms) 
 
-  
-
 print(keys([[1],[2],[3],[]])) # True
 print(keys([[1,3],[3,0,1],[2],[0]])) # False
