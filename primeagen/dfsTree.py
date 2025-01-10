@@ -1,10 +1,12 @@
 def compareTrees(a, b): #a and b are binary trees we're checking to see if they are the same shape and size
+  #structural check
   if a == None and b == None:
     return True
-  
+  #structural check
   if a == None or b == None:
     return False
   
+  #value check
   if a.value != b.value:
     return False
   
