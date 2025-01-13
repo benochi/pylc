@@ -9,7 +9,7 @@ def wordFinder(file):
         words = line.strip().split()
         for word in words:
           word.lower().strip(".,!?\"'")
-          count[word] = count.get(word,0) +1
+          count[word] = count.get(word,0) + 1
     maxFrequency = max(count.values())
     frequentWords = []
     wordToReturn = None
@@ -23,7 +23,7 @@ def wordFinder(file):
         wordToReturn = word
         wordLen = len(word)
       print(ord(word[0]))
-      
+
     print(wordToReturn)
   except FileNotFoundError:
     print(f"Filename: {file} not found.")
