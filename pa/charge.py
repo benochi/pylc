@@ -1,57 +1,34 @@
-from typing import List
-from functools import lru_cache
-import copy
+def charge(arr):
+    while arr and arr[-1] < 0:
+        arr.pop()
+    while arr and arr[0] < 0:
+        del arr[0]
 
-def get_maximum_charge(charge: List[int]) -> int:
-    # Convert list to tuple for hashable state in memoization
-    charges = tuple(charge)
-    
-    @lru_cache(None)
-    def simulate(curr_charges: tuple) -> int:
-        if len(curr_charges) == 1:
-            return curr_charges[0]
-        
-        max_charge = float('-inf')
-        
-        # Try removing each system except first and last
-        for i in range(len(curr_charges)):
-            # Create new state after removal and combination
-            new_charges = list(curr_charges)
-            
-            # If not leftmost or rightmost, combine neighbors
-            if 0 < i < len(curr_charges) - 1:
-                combined_charge = curr_charges[i-1] + curr_charges[i+1]
-                new_charges = new_charges[:i-1] + [combined_charge] + new_charges[i+2:]
-            # If leftmost, just remove it
-            elif i == 0:
-                new_charges = new_charges[1:]
-            # If rightmost, just remove it
-            else:
-                new_charges = new_charges[:-1]
-            
-            # Recursive call with new state
-            result = simulate(tuple(new_charges))
-            max_charge = max(max_charge, result)
-        
-        return max_charge
-    
-    return simulate(charges)
+    n = len(arr)
+    if n == 1:
+        return arr[0]
 
-# Test function
-def test_maximum_charge():
-    # Test case from problem
-    test1 = [-2, 4, 3, -2, 1]
-    assert get_maximum_charge(test1) == 4
-    
-    # Additional test cases
-    test2 = [-1,1,2,3,4,5,-8,-9,10]
-    test3 = [-1, 1, -1, 1]
-    test4 = [1, 2, 3]
-    
-    print("Test 1:", get_maximum_charge(test1))  # Should print 4
-    print("Test 2:", get_maximum_charge(test2))
-    print("Test 3:", get_maximum_charge(test3))
-    print("Test 4:", get_maximum_charge(test4))
+    # DP table
+    dp = [[0] * n for _ in range(n)]
 
-if __name__ == "__main__":
-    test_maximum_charge()
+    # Base case: Single elements
+    for i in range(n):
+        dp[i][i] = arr[i]
+
+    # Fill DP table
+    for length in range(2, n + 1):  # Subarray lengths
+        for i in range(n - length + 1):  # Starting index
+            j = i + length - 1  # Ending index
+            dp[i][j] = max(dp[i][j], dp[i + 1][j])  # Remove leftmost
+            dp[i][j] = max(dp[i][j], dp[i][j - 1])  # Remove rightmost
+            for k in range(i + 1, j):  # Remove middle element
+                dp[i][j] = max(dp[i][j], dp[i][k - 1] + dp[k + 1][j])
+
+    return dp[0][n - 1]
+
+
+print(charge([1,2,3,5,7,9,-10,2])) #18
+print(charge([-10,5,2,5,-10]))  #10
+print(charge([1,1,1,1,1,-8,-8,-8,1,1,1])) #3
+print(charge([5,5,5])) #10
+print(charge([5,-4,5,5,-4,5]))#10
