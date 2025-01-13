@@ -1,0 +1,4 @@
+Hello world! This is a test file.
+Hello, hello? World, world.
+Large files are handled line by line to save memory.
+This ensures efficiency and correctness in word counting.
