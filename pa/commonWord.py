@@ -8,7 +8,7 @@ def wordFinder(file):
       for line in fileHandler:
         words = line.strip().split()
         for word in words:
-          word.lower().strip(".,!?\"'")
+          word = word.lower().strip(".,!?\"'")
           count[word] = count.get(word,0) + 1
     maxFrequency = max(count.values())
     frequentWords = []
@@ -17,12 +17,14 @@ def wordFinder(file):
     for word, frequency in count.items():
       if frequency == maxFrequency:
         frequentWords.append(word)
+        print(word, frequency)
     
     for word in frequentWords:
       if len(word) > wordLen:
         wordToReturn = word
         wordLen = len(word)
-      print(ord(word[0]))
+      
+      #print(ord(word[0]))
 
     print(wordToReturn)
   except FileNotFoundError:
