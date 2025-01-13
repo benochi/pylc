@@ -10,48 +10,47 @@ def reverseWords(sentence):
     if not sentence:
         return ""
 
-    # First, identify word boundaries and spaces
     words = []
-    spaces = []
+    non_words = []  # spaces and punctuation
     current_word = []
-    current_space = []
+    current_non_word = []
     
     for char in sentence:
-        if char.isspace():
+        if char.isspace() or not char.isalnum():  # space or punctuation
             if current_word:
                 words.append(''.join(current_word))
                 current_word = []
-            current_space.append(char)
+            current_non_word.append(char)
         else:
-            if current_space:
-                spaces.append(''.join(current_space))
-                current_space = []
+            if current_non_word:
+                non_words.append(''.join(current_non_word))
+                current_non_word = []
             current_word.append(char)
             
-    # Handle any remaining word or space
+    # Handle any remaining chunks
     if current_word:
         words.append(''.join(current_word))
-    if current_space:
-        spaces.append(''.join(current_space))
+    if current_non_word:
+        non_words.append(''.join(current_non_word))
     
-    # If the sentence starts with a space, we need an extra empty word at the end
-    if sentence[0].isspace():
+    # If the sentence starts with non-word, we need an extra empty word at the end
+    if not sentence[0].isalnum():
         words.append('')
     
-    # If the sentence ends with a word, we need an extra empty space
-    if not sentence[-1].isspace():
-        spaces.append('')
+    # If the sentence ends with word, we need an extra empty non-word
+    if sentence[-1].isalnum():
+        non_words.append('')
         
-    # Reverse the words
     words.reverse()
     
-    # Reconstruct the sentence by interleaving words and spaces
+    # Reconstruct the sentence by interleaving
     result = []
-    for word, space in zip(words, spaces):
+    for word, non_word in zip(words, non_words):
         result.append(word)
-        result.append(space)
+        result.append(non_word)
         
     return ''.join(result)
+        
 
 # Simple print tests
 print(reverseWords("Hello World"))               # World Hello
@@ -62,3 +61,4 @@ print(reverseWords(""))                          # (empty string)
 print(reverseWords("   "))                       # (three spaces)
 print(reverseWords("One"))                       # One
 print(reverseWords("  Multiple   Spaces  "))     # Spaces   Multiple  
+print(reverseWords("..Multiple,, punctuations!!"))     # Spaces   Multiple  
