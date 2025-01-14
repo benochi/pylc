@@ -1,35 +1,46 @@
-import logging
-from logging.handlers import RotatingFileHandler
-from enum import Enum
+import os
 
-# Define log levels
-class LogLevel(Enum):
-    DEBUG = logging.DEBUG
-    INFO = logging.INFO
-    WARNING = logging.WARNING
-    ERROR = logging.ERROR
-    CRITICAL = logging.CRITICAL
+LOG_LEVELS = {
+    "DEBUG": "DEBUG",
+    "INFO": "INFO",
+    "WARNING": "WARNING",
+    "ERROR": "ERROR",
+    "CRITICAL": "CRITICAL"
+}
 
 class Logger:
     def __init__(self, file_name="app.log", max_bytes=1024 * 1024, backup_count=5):
-        self.logger = logging.getLogger("AppLogger")
-        self.logger.setLevel(logging.DEBUG)
-        handler = RotatingFileHandler(file_name, maxBytes=max_bytes, backupCount=backup_count)
-        formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(message)s")
-        handler.setFormatter(formatter)
-        self.logger.addHandler(handler)
+        self.file_name = file_name
+        self.max_bytes = max_bytes
+        self.backup_count = backup_count
+
+    def _rotate_logs(self):
+        """
+        Rotate log files when the size limit is reached.
+        """
+        if os.path.exists(self.file_name) and os.path.getsize(self.file_name) > self.max_bytes:
+            # Rotate logs manually
+            for i in range(self.backup_count - 1, 0, -1):
+                old_file = f"{self.file_name}.{i}"
+                new_file = f"{self.file_name}.{i + 1}"
+                if os.path.exists(old_file):
+                    os.rename(old_file, new_file)
+
+            # Rename the current log file
+            os.rename(self.file_name, f"{self.file_name}.1")
 
     def log(self, message, level):
-        if level == LogLevel.DEBUG:
-            self.logger.debug(message)
-        elif level == LogLevel.INFO:
-            self.logger.info(message)
-        elif level == LogLevel.WARNING:
-            self.logger.warning(message)
-        elif level == LogLevel.ERROR:
-            self.logger.error(message)
-        elif level == LogLevel.CRITICAL:
-            self.logger.critical(message)
+        """
+        Write a log message with the specified log level to the file.
+        """
+        if level not in LOG_LEVELS:
+            raise ValueError(f"Invalid log level: {level}")
 
-    def set_log_level(self, level):
-        self.logger.setLevel(level.value)
+        log_entry = f"{LOG_LEVELS[level]} - {message}\n"
+
+        # Check if log rotation is needed
+        self._rotate_logs()
+
+        # Append the log entry to the file
+        with open(self.file_name, "a", encoding="utf-8") as log_file:
+            log_file.write(log_entry)

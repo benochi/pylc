@@ -4,34 +4,32 @@ import json
 class ConfigManager:
     def __init__(self):
         self.config = {}
+        self.priority_sources = {}  # Track priorities for keys
 
-    def load_config(self, source):
+    def load_config(self, source, priority=0):
+        """
+        Load configuration from a specified source with an optional priority level.
+        Sources with higher priority will overwrite existing settings.
+        """
+        new_config = {}
         if source.endswith(".json"):
+            if not os.path.exists(source):
+                raise FileNotFoundError(f"Configuration file not found: {source}")
             with open(source, 'r', encoding='utf-8') as file:
-                self.config.update(json.load(file))
+                new_config = json.load(file)
         elif source == "env":
-            self.config.update(os.environ)
+            new_config = dict(os.environ)
         else:
             raise ValueError(f"Unsupported config source: {source}")
 
+        # Merge configurations based on priority
+        for key, value in new_config.items():
+            if key not in self.priority_sources or priority >= self.priority_sources[key]:
+                self.config[key] = value
+                self.priority_sources[key] = priority
+
     def get_config(self, key):
+        """
+        Retrieve the value for a given configuration key.
+        """
         return self.config.get(key)
-
-# Usage example
-if __name__ == "__main__":
-    # Error Handling Example
-    try:
-        process_file("sample.txt")
-    except FileProcessingError as e:
-        print(f"Error: {e}")
-
-    # Logging Example
-    logger = Logger()
-    logger.set_log_level(LogLevel.INFO)
-    logger.log("Application started", LogLevel.INFO)
-
-    # Configuration Management Example
-    config_manager = ConfigManager()
-    config_manager.load_config("config.json")  # Assuming a JSON file
-    config_manager.load_config("env")  # Load environment variables
-    print(config_manager.get_config("APP_NAME"))
