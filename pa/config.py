@@ -7,10 +7,6 @@ class ConfigManager:
         self.priority_sources = {}  # Track priorities for keys
 
     def load_config(self, source, priority=0):
-        """
-        Load configuration from a specified source with an optional priority level.
-        Sources with higher priority will overwrite existing settings.
-        """
         new_config = {}
         if source.endswith(".json"):
             if not os.path.exists(source):
@@ -29,7 +25,4 @@ class ConfigManager:
                 self.priority_sources[key] = priority
 
     def get_config(self, key):
-        """
-        Retrieve the value for a given configuration key.
-        """
         return self.config.get(key)

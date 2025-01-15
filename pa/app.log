@@ -1,0 +1,4 @@
+ERROR:root:Error: Invalid line in file: valid.txt
+ERROR:root:Error: File not found: nonexistent.txt
+ERROR:root:Error: File not found: invalid_format.txt
+ERROR:root:Unexpected error: _path_exists: path should be string, bytes, os.PathLike or integer, not NoneType

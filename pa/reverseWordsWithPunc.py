@@ -56,7 +56,7 @@ def reverseWords(sentence):
 print(reverseWords("Hello World"))               # World Hello
 print(reverseWords(" I have a lollipop "))       # lollipop a have I 
 print(reverseWords("Double  Spaces"))            # Spaces  Double
-print(reverseWords("Hello, world!"))             # world!, Hello
+print(reverseWords("Hello, world!"))             # world, Hello!
 print(reverseWords(""))                          # (empty string)
 print(reverseWords("   "))                       # (three spaces)
 print(reverseWords("One"))                       # One
